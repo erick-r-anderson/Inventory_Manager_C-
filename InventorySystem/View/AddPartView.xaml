@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="InventorySystem.View.AddPartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local1="clr-namespace:InventorySystem"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    
+        <Grid Margin="0,0,3.4,12.4">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".5*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*" />
+                <ColumnDefinition Width=".5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width=".5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width=".5*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Add Part" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center"  Grid.Row="0" VerticalAlignment="Center"/>
+        <RadioButton x:Name="rdInHouse"  Content="In House" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" IsChecked="True" GroupName="PartSource" />
+        <RadioButton  x:Name="rdOutsourced" Content="Outsourced" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" GroupName="PartSource"/>
+            <Label Content="ID" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtId" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="2" TextWrapping="Wrap" IsEnabled="False" Margin="10.2,9.8,10.4,10.6" Text="{Binding NewPartId, Mode=TwoWay}"/>
+            <Label Content="Name" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtName" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="3" TextWrapping="Wrap"  Margin="10.2,9.8,10.4,10.6" AcceptsReturn="True">
+                 <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="NewPartName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                         <Binding.ValidationRules>
+                            <local1:TextValidationRules ValidatesOnTargetUpdated="True"/>
+                         </Binding.ValidationRules>
+                     </Binding>
+                 </TextBox.Text>
+            </TextBox>
+            <Label Content="Inventory" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtInv" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="4" TextWrapping="Wrap" Margin="10.2,9.8,10.4,10.6" >
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="NewPartStock" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local1:IntValidationRules ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label Content="Price" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPrice" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="5" TextWrapping="Wrap" Margin="10.2,9.8,10.4,10.6" >
+                 <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="NewPartPrice" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local1:DoubleValidationRules ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label Content="Max" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtMax" Grid.Column="2" Grid.Row="6" TextWrapping="Wrap"  Margin="10.2,9.8,10.4,10.6" >
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="NewPartMax" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local1:IntValidationRules ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label Content="Min" Grid.Column="3" HorizontalAlignment="Right" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtMin" Grid.Column="4" Grid.Row="6" TextWrapping="Wrap" Margin="10.2,9.8,10.4,10.6" >
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+                <TextBox.Text>
+                    <Binding Path="NewPartMin" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local1:IntValidationRules ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        <Label x:Name="lblMachineId" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="7" VerticalAlignment="Center">
+            <Label.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=rdInHouse, Path=IsChecked}" Value="True">
+                            <Setter Property="Content" Value="Machine ID" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=rdOutsourced, Path=IsChecked}" Value="True">
+                            <Setter Property="Content" Value="Vendor" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Resources>
+        </Label>
+        <TextBox x:Name="txtMachineID" Grid.Column="2" Grid.Row="7" TextWrapping="WrapWithOverflow"  Margin="10.2,9.8,9.8,10.4" >
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <!-- Placeholder for the TextBox itself -->
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <TextBox.Text>
+                <Binding Path="NewPartMachineId" Mode="OneWayToSource" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local1:IntValidationRules ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=rdOutsourced, Path=IsChecked}" Value="True" >
+                            
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=rdInHouse, Path=IsChecked}" Value="True" >
+                            
+                            <Setter Property="Visibility" Value="Visible"/>
+
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="txtVendor" Grid.Column="2" Grid.Row="7" TextWrapping="WrapWithOverflow"  Margin="10.2,9.8,9.8,10.4" >
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <!-- Placeholder for the TextBox itself -->
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <TextBox.Text>
+                <Binding Path="NewPartVendor" Mode="OneWayToSource" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local1:TextValidationRules ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=rdInHouse, Path=IsChecked}" Value="True" >
+                            
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <Button x:Name="btnSave" Content="Save" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,9.6,0,0" Grid.Row="8" VerticalAlignment="Top" Width="114" Height="32" Command="{Binding HandleNewPartSave}">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtName, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=(Validation.HasError), ElementName=txtName, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtInv, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=(Validation.HasError), ElementName=txtInv, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtPrice, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=(Validation.HasError), ElementName=txtPrice, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtMin, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=(Validation.HasError), ElementName=txtMin, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text.Length, ElementName=txtMax, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=(Validation.HasError), ElementName=txtMax, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btnCancel" Content="Cancel" Grid.Column="4" HorizontalAlignment="Left" Margin="0.2,9.6,0,0" Grid.Row="8" VerticalAlignment="Top" Width="114" Height="32" Command="{Binding HandleCancel}" />
+    </Grid>
+</UserControl>
